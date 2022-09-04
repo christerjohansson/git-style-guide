@@ -19,81 +19,84 @@ Translations are available in the following languages:
 * [Portuguese](https://github.com/guylhermetabosa/git-style-guide)
 * [Russian](https://github.com/alik0211/git-style-guide)
 * [Spanish](https://github.com/jeko2000/git-style-guide)
+* [Swedish](https://github.com/christerjohansson/git-style-guide.git)
 * [Thai](https://github.com/zondezatera/git-style-guide)
 * [Turkish](https://github.com/CnytSntrk/git-style-guide)
 * [Ukrainian](https://github.com/denysdovhan/git-style-guide)
 
-If you feel like contributing, please do so! Fork the project and open a pull
-request.
+Om du vill bidra till projektet, klicka på Fork för att kopiera projektet till ditt eget konto. Översätt texten och skapa sedan en Pull Request för att begära granskning och sammanfoga din text med ordinarie repository.
 
-# Table of contents
+# Innehållsförteckning
 
-1. [Branches](#branches)
-2. [Commits](#commits)
-  1. [Messages](#messages)
-3. [Merging](#merging)
-4. [Misc.](#misc)
+- [Git Style Guide](#git-style-guide)
+- [Innehållsförteckning](#innehållsförteckning)
+  - [Grenar (Branches)](#grenar-branches)
+  - [Genomförande (eng. Commits)](#genomförande-eng-commits)
+    - [Messages](#messages)
+  - [Merging](#merging)
+  - [Misc.](#misc)
+- [License](#license)
+- [Credits](#credits)
 
-## Branches
+## Grenar (Branches)
 
-* Choose *short* and *descriptive* names:
+* Välj *korta* och *beskrivande* namn:
 
   ```shell
-  # good
+  # Bra
   $ git checkout -b oauth-migration
 
-  # bad - too vague
+  # Dåligt - för vagt och generellt
   $ git checkout -b login_fix
   ```
 
-* Identifiers from corresponding tickets in an external service (eg. a GitHub
-  issue) are also good candidates for use in branch names. For example:
+* Identifierare från motsvarande ärenden i en extern tjänst (t.ex. en GitHub
+  issue) är också bra exempel för användning i namn för grenar. Till exempel:
 
   ```shell
   # GitHub issue #15
   $ git checkout -b issue-15
   ```
-
-* Use lowercase in branch names. External ticket identifiers with uppercase
-  letters are a valid exception. Use *hyphens* to separate words.
+* Använd gemener i namn för grenar (eng. branch). Externa identifierare med versaler för öppna ärenden (issue) med versaler är ett giltigt undantag. Använd *bindestreck* för att separera ord.
 
   ```shell
-  $ git checkout -b new-feature      # good
-  $ git checkout -b T321-new-feature # good (Phabricator task id)
-  $ git checkout -b New_Feature      # bad
+  $ git checkout -b new-feature      # bra
+  $ git checkout -b T321-new-feature # bra (Phabricator uppgifts-id)
+  $ git checkout -b New_Feature      # dåligt
   ```
 
-* When several people are working on the *same* feature, it might be convenient
-  to have *personal* feature branches and a *team-wide* feature branch.
-  Use the following naming convention:
+* När flera personer arbetar med *samma* funktion kan det vara bekvämt
+  att ha *personliga* grenar (eng. branch) för funktioner och en *team-gemensam* gren för funktioner.
+  Använd följande namngivningskonvention:
 
   ```shell
-  $ git checkout -b feature-a/main # team-wide branch
-  $ git checkout -b feature-a/maria  # Maria's personal branch
-  $ git checkout -b feature-a/nick   # Nick's personal branch
+  $ git checkout -b feature-a/main # team-gemensam gren (eng. branch)
+  $ git checkout -b feature-a/maria  # Marias personliga gren
+  $ git checkout -b feature-a/nick   # Nicks personliga gren
   ```
-
-  Merge at will the personal branches to the team-wide branch (see ["Merging"](#merging)).
-  Eventually, the team-wide branch will be merged to "main".
+  
+  Slå samman de personliga grenarna efter behag till den team-gemensamma grenen (se ["Sammanslagning"](#merging)). Så småningom kommer den gemensamma grenen att slås samman till "main".
 
 * Delete your branch from the upstream repository after it's merged, unless
   there is a specific reason not to.
 
-  Tip: Use the following command while being on "main", to list merged
-  branches:
+* Ta bort grenen från det överordnade repositoriet när den har sammanfogats, såvida inte
+  det finns en särskild anledning att inte göra det.
+
+  Tips: Använd följande kommando när du befinner dig på grenen "main" för att lista sammanslagna
+  grenar:
 
   ```shell
   $ git branch --merged | grep -v "\*"
   ```
 
-## Commits
+## Genomförande (eng. Commits)
 
-* Each commit should be a single *logical change*. Don't make several
-  *logical changes* in one commit. For example, if a patch fixes a bug and
-  optimizes the performance of a feature, split it into two separate commits.
+* Varje *commit* ska vara en enda *logisk ändring*. Gör inte flera
+  *logiska ändringar* i en enskild *commit*. Till exempel, om en patch fixar ett fel och optimerar prestanda för en funktion, dela upp den i två separata *commits*.
 
-  *Tip: Use `git add -p` to interactively stage specific portions of the
-  modified files.*
+  *Tips: Använd `git add -p` för att interaktivt förbereda specifika delar av dina
+  modifierade filer.*
 
 * Don't split a single *logical change* into several commits. For example,
   the implementation of a feature and the corresponding tests should be in the
